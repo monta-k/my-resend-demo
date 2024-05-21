@@ -1,6 +1,11 @@
 import 'firebase/auth'
+import * as admin from 'firebase-admin'
 import { getFirebaseAdmin } from './cert'
 import { BASE_PATH } from '@/env'
+
+export async function verifyIdToken(idToken: string): Promise<admin.auth.DecodedIdToken> {
+  return await getFirebaseAdmin().verifyIdToken(idToken)
+}
 
 export async function generateSignInWithEmailLink(email: string): Promise<string> {
   return await getFirebaseAdmin().generateSignInWithEmailLink(email, {
@@ -14,4 +19,8 @@ export async function generateResetPasswordLink(email: string): Promise<string> 
     url: BASE_PATH + '/signin',
     handleCodeInApp: true
   })
+}
+
+export async function generateVerifyAndChangeEmailLink(email: string, newEmail: string): Promise<string> {
+  return await getFirebaseAdmin().generateVerifyAndChangeEmailLink(email, newEmail)
 }

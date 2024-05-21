@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { auth } from './client'
 import { removeTokenFromCookie, getTokenFromCookie } from '../cookie'
-import { signInWithEmailAndPassword, signOut, updatePassword } from 'firebase/auth'
+import { signInWithEmailAndPassword, signOut, updateEmail, updatePassword } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import { BASE_PATH } from '@/env'
 import { postLinkEmail } from '../api'

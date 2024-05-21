@@ -3,7 +3,7 @@ import { EMAIL_FOR_SIGN_UP, useUpdatePassword } from '@/lib/firebase/auth'
 import { auth } from '@/lib/firebase/client'
 import { isSignInWithEmailLink, signInWithEmailLink } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 export default function Index() {
   const { handleUpdatePassword } = useUpdatePassword()

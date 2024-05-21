@@ -1,10 +1,8 @@
 'use client'
 import { postResetPassword } from '@/lib/api'
-import { useSignin } from '@/lib/firebase/auth'
 import { useRouter } from 'next/navigation'
 
 export default function Signin() {
-  const { handleSignin } = useSignin()
   const router = useRouter()
   return (
     <div className="min-h-screen flex-col flex items-center justify-between">

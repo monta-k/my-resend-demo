@@ -1,11 +1,8 @@
 import { NextResponse } from 'next/server'
-import { Resend } from 'resend'
-import { RESEND_API_KEY } from '@/env'
 import { PostResetPasswordLinkParams } from '../_type/resetPassword'
 import { generateResetPasswordLink } from '@/backend/lib/firebase-admin/auth'
 import { EmailTemplate } from './_EmailTemplate'
-
-const resend = new Resend(RESEND_API_KEY)
+import { resend } from '@/backend/lib/resend'
 
 export async function POST(request: Request) {
   const body = await request.json()

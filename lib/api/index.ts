@@ -15,3 +15,11 @@ export async function postResetPassword(email: string) {
     body: JSON.stringify({ email })
   })
 }
+
+export async function postUpdateEmail(idToken: string, newEmail: string) {
+  return await relativeFetch(`/api/update-email`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + idToken },
+    body: JSON.stringify({ newEmail })
+  })
+}
