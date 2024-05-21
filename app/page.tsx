@@ -1,8 +1,8 @@
 'use client'
-import { EMAIL_FOR_SIGN_UP, useSignOut } from '@/lib/firebase/auth'
+import { useSignOut } from '@/lib/firebase/auth'
 import { auth } from '@/lib/firebase/client'
-import { isSignInWithEmailLink, onAuthStateChanged, signInWithEmailLink } from 'firebase/auth'
-import { redirect, useRouter } from 'next/navigation'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function Index() {
@@ -11,31 +11,11 @@ export default function Index() {
   const router = useRouter()
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
-      if (user) {
+      if (user && user.emailVerified && user.providerData.some(provider => provider.providerId === 'password')) {
         setUid(user.uid)
         return
       }
-
-      // 適切なメールリンクかどうかを確認
-      if (!isSignInWithEmailLink(auth, window.location.href)) {
-        router.push('/login')
-      }
-
-      const emailFormSignUp = window.localStorage.getItem(EMAIL_FOR_SIGN_UP)
-      if (emailFormSignUp) {
-        signInWithEmailLink(auth, emailFormSignUp, window.location.href)
-          .then(result => {
-            window.localStorage.removeItem(EMAIL_FOR_SIGN_UP)
-            if (result.user) {
-              setUid(result.user.uid)
-            }
-          })
-          .catch(error => {
-            console.error(error)
-          })
-      } else {
-        router.push('/login')
-      }
+      router.push('/signin')
     })
 
     return () => {

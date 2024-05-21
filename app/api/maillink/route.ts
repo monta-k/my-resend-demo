@@ -19,7 +19,7 @@ export async function POST(request: Request) {
   await resend.emails.send({
     from: 'noreply@resend.dev',
     to: postParamsResult.data.email,
-    subject: 'Sign in link',
+    subject: 'Sign up link',
     react: EmailTemplate({ email: postParamsResult.data.email, linkUrl: emailLink })
   })
 

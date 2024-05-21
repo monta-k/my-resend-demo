@@ -1,7 +1,8 @@
 'use client'
 import { useSendSignInLinkToEmail } from '@/lib/firebase/auth'
+import Link from 'next/link'
 
-export default function Login() {
+export default function Signup() {
   const { handleSendSignInLinkToEmail } = useSendSignInLinkToEmail()
   return (
     <div className="min-h-screen flex-col flex items-center justify-between">
@@ -25,10 +26,13 @@ export default function Login() {
               className="ml-2 shadow text-black bg-white focus:shadow-outline focus:outline-none py-2 px-4 rounded"
               type="submit"
             >
-              ログイン
+              新規登録
             </button>
           </div>
         </form>
+        <div>
+          <Link href="/signin">ログイン</Link>
+        </div>
       </div>
     </div>
   )

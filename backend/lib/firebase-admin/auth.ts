@@ -4,7 +4,7 @@ import { BASE_PATH } from '@/env'
 
 export async function generateSignInWithEmailLink(email: string): Promise<string> {
   return await getFirebaseAdmin().generateSignInWithEmailLink(email, {
-    url: BASE_PATH,
+    url: BASE_PATH + '/set-password',
     handleCodeInApp: true
   })
 }
